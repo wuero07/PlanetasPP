@@ -1,3 +1,4 @@
+
 package com.example.planetas;
 
 import android.content.Intent;
@@ -5,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +34,9 @@ public class MainActivity extends AppCompatActivity {
         planetList.add(new Planet(getString(R.string.planet_uranus), R.drawable.urano1, getString(R.string.desc_uranus_short), getString(R.string.desc_uranus_long)));
         planetList.add(new Planet(getString(R.string.planet_neptune), R.drawable.neptuno1, getString(R.string.desc_neptune_short), getString(R.string.desc_neptune_long)));
 
-
         adapter = new PlanetAdapter(this, planetList, planet -> {
             Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-            intent.putExtra("name", planet.getName());
-            intent.putExtra("imageResId", planet.getImageResId());
-            intent.putExtra("longDescription", planet.getLongDescription());
+            intent.putExtra("planetList", planetList.toArray(new Planet[0]));
             startActivity(intent);
         });
 

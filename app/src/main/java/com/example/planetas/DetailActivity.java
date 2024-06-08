@@ -1,10 +1,12 @@
 package com.example.planetas;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -13,19 +15,23 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView detailImage = findViewById(R.id.detail_image);
-        TextView detailName = findViewById(R.id.detail_name);
-        TextView detailLongDesc = findViewById(R.id.detail_long_desc);
+        LinearLayout planetContainer = findViewById(R.id.planet_container);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        int imageResId = intent.getIntExtra("imageResId", -1);
-        String longDescription = intent.getStringExtra("longDescription");
+        Planet[] planetArray = (Planet[]) intent.getSerializableExtra("planetList");
 
-        detailName.setText(name);
-        if (imageResId != -1) {
-            detailImage.setImageResource(imageResId);
+        for (Planet planet : planetArray) {
+            View planetView = getLayoutInflater().inflate(R.layout.item_planet_detail, null);
+
+            ImageView planetImage = planetView.findViewById(R.id.planet_image);
+            TextView planetName = planetView.findViewById(R.id.planet_name);
+            TextView planetDesc = planetView.findViewById(R.id.planet_desc);
+
+            planetImage.setImageResource(planet.getImageResId());
+            planetName.setText(planet.getName());
+            planetDesc.setText(planet.getLongDescription());
+
+            planetContainer.addView(planetView);
         }
-        detailLongDesc.setText(longDescription);
     }
 }

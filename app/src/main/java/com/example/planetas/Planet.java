@@ -1,6 +1,8 @@
-package com.example.planetas;
+package com.example.planetas;// Planet.java
 
-public class Planet {
+import java.io.Serializable;
+
+public class Planet implements Serializable {
     private String name;
     private int imageResId;
     private String shortDescription;
