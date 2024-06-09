@@ -53,7 +53,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
             super(itemView);
             nameTextView = itemView.findViewById(R.id.planet_name);
             imageView = itemView.findViewById(R.id.planet_image);
-            shortDescTextView = itemView.findViewById(R.id.planet_short_desc);
+            shortDescTextView = itemView.findViewById(R.id.planet_desc);
         }
 
         public void bind(final Planet planet, final OnItemClickListener listener) {
